@@ -32,6 +32,10 @@ export class PorPaisComponent {
 
   sugerencias(termino: string){
     this.hayError = false;
+    this.termino = termino;
+    console.log(this.termino);
+    this.buscar(this.termino);
     // To Do: crear sugerencias
   }
+  
 }
