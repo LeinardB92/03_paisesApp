@@ -21,5 +21,10 @@
     </div>
 </div>
 
-
-
+<hr>
+<div *ngIf="paisesRegion.length > 0"   
+    class="row">
+  <div class="col">
+      <app-pais-tabla [paises]=paisesRegion></app-pais-tabla>
+  </div>
+</div>
