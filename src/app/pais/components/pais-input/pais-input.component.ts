@@ -1,26 +1,31 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { debounceTime, Subject } from 'rxjs';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { debounceTime, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pais-input',
   templateUrl: './pais-input.component.html',
 })
-export class PaisInputComponent implements OnInit{
-  
+export class PaisInputComponent implements OnInit, OnDestroy{
+
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
   @Input() placeholder: string = "";
 
-  debouncer: Subject<string> = new Subject();
-  
+  private debouncer: Subject<string> = new Subject();
+  private debouncerSubscription?: Subscription;
+
   termino: string = "";
 
   ngOnInit(): void {
-    this.debouncer
+    this.debouncerSubscription = this.debouncer
     .pipe(debounceTime(500))
     .subscribe(valor => {
       this.onDebounce.emit(valor);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.debouncerSubscription?.unsubscribe();
   }
 
   buscar(){
