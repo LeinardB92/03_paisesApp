@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, delay, of } from 'rxjs';
 import { Country } from '../interfaces/pais.interface';
 
 @Injectable({
@@ -39,6 +39,7 @@ export class PaisService {
     return this.http.get<Country[]>(url, {params: this.httpParams})
       .pipe(
         catchError(() => of([])),
+        delay(1500)
       );
   }
 }

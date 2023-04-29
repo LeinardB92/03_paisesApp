@@ -21,8 +21,8 @@
 <div *ngIf="paises.length > 0"
       class="row">
     <div class="col">
-      <hr>
-      <app-loading-spinner></app-loading-spinner>
       <app-pais-tabla [paises]=paises></app-pais-tabla>
     </div>
 </div>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
