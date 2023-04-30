@@ -5,10 +5,10 @@
 
 <div class="row">
     <div class="col">
-        
+
         <!-- Esto es una manera de hacer, lo que se puede hacer con [ngClass] -->
         <!-- [class.btn-primary]="region === regionActiva" -->
-        <!-- [enClass] es una manera más elegante de hacerlo, pero podemos mejoralo para no tener que hacer más de una operación lógica. -->
+        <!-- [ngClass] es una manera más elegante de hacerlo, pero podemos mejoralo para no tener que hacer más de una operación lógica. -->
         <!-- [ngClass]="{
             'btn-primary': region === regionActiva,
             'btn-outline-primary': region !== regionActiva
@@ -17,16 +17,18 @@
             [class]= "getClaseCSS(region)"
             (click)="activarRegion(region)"
             class="animate__animated animate__tada">
-            
+
             {{region | titlecase}}
         </button>
     </div>
 </div>
 
 <hr class="animate__animated animate__wobble">
-<div *ngIf="paisesRegion.length > 0"   
+<div *ngIf="paisesRegion.length > 0"
     class="row">
   <div class="col">
       <app-pais-tabla [paises]=paisesRegion></app-pais-tabla>
   </div>
 </div>
+
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
